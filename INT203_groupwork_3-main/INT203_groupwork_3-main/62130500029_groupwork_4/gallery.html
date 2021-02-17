@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic Vue Js - HelloWorld App</title>
+
+  <!-- https://google.github.io/material-design-icons/#icon-font-for-the-web -->
+  <!-- Using via Google Web Fonts -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+  <!-- https://tailwindcss.com/docs/installation -->
+  <!-- Using Tailwind via CDN -->
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+
+  <!-- https://v3.vuejs.org/guide/installation.html#release-notes -->
+  <!-- Vue CDN -->
+  <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+
+<body>
+  <div id="app" class="max-w-xl mx-auto my-10 space-y-3">
+    <h1 class="text-xl">Photo Gallery( {{ tasks.filter( t => t.done ).length }} )</h1>
+    <span v-show = done3><img src="images/search.jpg" class="flex object-scale-down h-5 w-5 " v-on:click ="done2 = !done2 ;  done3 =!done3" ></span>
+    <span v-show ="done2">
+      <input v-model="inputTask" placeholder="Please enter  text for searching photos" 
+      size="37" class="p-2 bg-white rounded border-2 w-auto " @keyup.enter="deleteTask(index)">
+      <button class="bg-gray-300 p-3  m-2">Cancle</button>
+    </span>
+      
+    
+    <ul>
+      <li v-for="(task,index) in tasks" class ="flex {done: task.done}">
+        <img v-bind:src ="task.image" class=" object-scale-down h-48 w-56 " v-on:click="toggleDone(index)">
+        <span class="flex my-auto mx-10">{{task.title}}
+        <span v-show="task.done" class=" mt-1"><img src="images/heart.jpg " class="float object-scale-down h-4 w-4"></span>
+        </span>
+    </li>
+    </ul>
+  </div>
+
+  
+  <script src="./main.js"></script>
+</body>
+
+</html>
